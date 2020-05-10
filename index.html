@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Odds?</title>
+	<style> 
+		body { 
+			margin: 0;
+			height: 100vh;
+			background-color: lightblue;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		#inputField {
+			border: 1px solid black;
+			border-radius: 20px;
+			min-width: 300px;
+			min-height: 150px;
+			background-color: silver;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		
+		#runButton {
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		const main = function () {
+			setUpRunButton();
+		}
+		
+		function setUpRunButton() {
+			const runButton = $("#runButton")[0];
+			runButton.onclick = runCalculationProgram;
+		}
+		
+		function runCalculationProgram() {
+			const rateInput = $("#rateInput")[0].value;
+			const killsInput = $("#killsInput")[0].value;
+			const rate = parseInt(rateInput);
+			const kills = parseInt(killsInput);
+			const output = 1 - ((1-1/rate)**kills);
+			
+			const outputDiv = $("#outputDiv")[0];
+			outputDiv.innerHTML = output;
+		}
+		
+		function $(aString) {
+			return document.querySelectorAll(aString);
+		}
+		window.onload = main;
+	</script>
+</head>
+<body>
+	<div id="inputField">
+		<div>Drop rate:</div>
+		<input id="rateInput" type="number"> </input>
+		<div>Kills:</div>
+		<input id="killsInput" type="number"> </input>
+		<div id="outputDiv">Chance of getting the item</div>
+		<button id="runButton"> Calculate </button>
+	</div>
+</body>
+</html>
